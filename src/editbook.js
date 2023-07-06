@@ -9,8 +9,16 @@ module.exports = (request, response, bookId) => {
 
   request.on('end', () => {
     body = Buffer.concat(body).toString();
-    const { name, year, author, publisher, summary, pageCount, readPage } =
-      JSON.parse(body);
+    const {
+      name,
+      year,
+      author,
+      publisher,
+      summary,
+      pageCount,
+      readPage,
+      reading,
+    } = JSON.parse(body);
 
     if (
       !name ||
@@ -82,6 +90,7 @@ module.exports = (request, response, bookId) => {
       publisher,
       pageCount,
       readPage,
+      reading,
     });
 
     response.statusCode = 200;

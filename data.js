@@ -15,7 +15,6 @@ module.exports.addBook = (book) => {
   };
 
   newBook.finished = newBook.pageCount === newBook.readPage;
-  newBook.reading = false;
 
   data.push(newBook);
   newBook.bookId = bookId;
@@ -48,18 +47,36 @@ module.exports.getBookById = (bookId) => {
 };
 
 module.exports.getBooksWithReading = (reading) => {
-  let book = data.filter((book) => book.reading === reading);
-  return book;
+  console.log('data: ', data, ', reading: ', reading);
+  let books = data.filter((book) => book.reading === reading);
+  console.log('books: ', books);
+  books = books.map((book) => {
+    return { id: book.id, publisher: book.publisher, name: book.name };
+  });
+  return books;
 };
 
 module.exports.getBooksWithName = (value) => {
-  let book = data.filter((book) => book.name.includes(value));
-  return book;
+  console.log('data: ', data, ', value: ', value);
+  let books = data.filter((book) => book.name.includes(value));
+  console.log('books: ', books);
+
+  books = books.map((book) => {
+    return { id: book.id, publisher: book.publisher, name: book.name };
+  });
+  return books;
 };
 
 module.exports.getBooksWithFinished = (value) => {
-  let book = data.filter((book) => book.finished === value);
-  return book;
+  console.log('data: ', data, ', value: ', value);
+
+  let books = data.filter((book) => book.finished === value);
+  console.log('books: ', books);
+
+  books = books.map((book) => {
+    return { id: book.id, publisher: book.publisher, name: book.name };
+  });
+  return books;
 };
 // Fungsi untuk mendapatkan seluruh data buku
 module.exports.getAllBooks = () => {
